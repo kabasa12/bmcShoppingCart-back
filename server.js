@@ -73,29 +73,6 @@ server.get('/products', (req, res) => {
     });
 });
 
-server.get('/products-on-sale', (req, res) => {
-    res.send({
-        success: true,
-        data: data.products.filter(product => product.onSale)
-    });
-});
-
-server.get('/products/:categoryId', (req, res) => {
-    const categoryId = req.params.categoryId;
-    const response = {};
-  
-    if (categoryId !== undefined) {
-        response.success = true;
-        response.data = data.products.filter(product => product.category.id === categoryId);
-    } else {
-        response.success = false;
-        response.err = 'categoryId is missing or invalid';
-    }
-  
-    res.send(response);
-  
-});
-
 console.log('Starting server ...');
 server.listen(config.port, () => {
     console.log('Server started at port ' + config.port)
